@@ -1,0 +1,24 @@
+file_path="./race_results.json"
+file=File.read(file_path); nil
+hash=JSON.parse(file); nil
+racers=Racer.collection
+racers.insert_many(hash); nil
+
+Racer.collection.count
+
+
+racer=Racer.new(number:1001, first_name:"cat", last_name:"inhat", group:"masters", secs:1000)
+racer.save
+racer.update(first_name:"thing", last_name:"one", group:"15 to 19")
+
+
+id=Racer.all({first_name:"thing", last_name:"one"}).first[:_id].to_s
+id=Racer.all({first_name:"thing", last_name:"one"}).first[:_id].to_s
+
+
+page=Racer.paginate(page:1)
+page.current_page
+page.per_page
+page.total_pages
+page.count
+page.total_entries
